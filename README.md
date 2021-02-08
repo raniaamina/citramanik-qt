@@ -32,8 +32,6 @@ Citramanik can be downloaded for free. But before that, the developers tried to 
 
 [Donate Now](https://s.id/citramanik)
 
-> Usefull link
->
-> [Citramanik Main Page](https://citramanik.dev.is.my.id)
->
-> [Devlovers ID](https://dev-is.my.id)
+**Usefull link**
+- [Citramanik Main Page](https://citramanik.dev.is.my.id)
+- [Devlovers ID](https://dev-is.my.id)
