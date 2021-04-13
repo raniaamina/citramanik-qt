@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="/image">
+    <file>imgs/citramanik-qt.png</file>
+    <file>imgs/ui_arrowDown.png</file>
+    <file>imgs/ui_arrowUp.png</file>
+    <file>imgs/ic_extension.png</file>
+    <file>imgs/ic_Add.png</file>
+    <file>imgs/ic_Cancel.png</file>
+    <file>imgs/ic_Export.png</file>
+    <file>imgs/ic_Remove.png</file>
+    <file>imgs/img-bg-sections.png</file>
+    <file>imgs/img-bg-sections_progressBar.png</file>
+  </qresource>
+  <qresource prefix="/fonts">
+    <file>fonts/Inter-VariableFont_slnt,wght.ttf</file>
+  </qresource>
+</RCC>

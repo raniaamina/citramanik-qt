@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="inkporter-svg-v2lgfj6j.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 8.4666672 8.4666671"
+   height="8.4666672mm"
+   width="8.4666672mm"
+   inkscape:export-filename="/home/sherlock/Project/MatePorter/Inksplit.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5756">
+      <rect
+         style="fill:#f2f5f9;fill-opacity:1;stroke-width:0.286782;stop-color:#000000"
+         id="rect5758"
+         width="254"
+         height="150.61362"
+         x="-103.14964"
+         y="97.680687"
+         rx="2.18049"
+         ry="2.18049" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     inkscape:snap-page="true"
+     inkscape:window-maximized="1"
+     inkscape:window-y="36"
+     inkscape:window-x="0"
+     inkscape:window-height="1036"
+     inkscape:window-width="1920"
+     inkscape:lockguides="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-others="false"
+     inkscape:object-nodes="true"
+     inkscape:snap-nodes="true"
+     inkscape:snap-global="true"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="g8001"
+     inkscape:document-units="mm"
+     inkscape:cy="586.97659"
+     inkscape:cx="424.41457"
+     inkscape:zoom="0.66578009"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#acacac"
+     id="base"
+     inkscape:snap-center="true"
+     inkscape:snap-object-midpoints="true"
+     showguides="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-0.82958939,-319.93709)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <g
+       id="g7672"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <g
+         id="g7005"
+         transform="translate(-13.120197)">
+        <g
+           id="g7146"
+           transform="translate(-0.02671181)">
+          <g
+             id="g4859"
+             transform="translate(3.3694217,231.56694)">
+            <g
+               id="g4857"
+               transform="translate(8.8407475,-25.703352)">
+              <g
+                 transform="matrix(0.35277778,0,0,0.35277778,1.766329,114.0735)"
+                 id="ic_Export"
+                 stroke="none"
+                 stroke-width="1"
+                 fill="none"
+                 fill-rule="evenodd">
+                <rect
+                   id="rect4845"
+                   x="0"
+                   y="0"
+                   width="24"
+                   height="24" />
+                <circle
+                   id="circle4847"
+                   fill="#000000"
+                   opacity="0.3"
+                   cx="12"
+                   cy="12"
+                   r="9"
+                   style="fill:#ffffff;fill-opacity:1" />
+                <path
+                   d="m 11.158233,15.873297 3.992494,-3.482452 c 0.208102,-0.181517 0.229653,-0.497365 0.04814,-0.705467 -0.01459,-0.01673 -0.03028,-0.03247 -0.04697,-0.04711 L 11.159405,8.1338547 C 10.95187,7.9516906 10.635956,7.972258 10.453792,8.1797932 10.373721,8.271016 10.329568,8.388251 10.329568,8.5096304 v 6.9868656 c 0,0.276142 0.223857,0.5 0.5,0.5 0.120843,0 0.237597,-0.04377 0.328665,-0.123199 z"
+                   id="path4849"
+                   fill="#000000"
+                   style="fill:#ffffff;fill-opacity:1" />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

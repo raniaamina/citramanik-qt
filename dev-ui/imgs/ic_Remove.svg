@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="inkporter-svg-v2lgfj6j.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 4.2333336 4.2333335"
+   height="4.2333336mm"
+   width="4.2333336mm"
+   inkscape:export-filename="/home/sherlock/Project/MatePorter/Inksplit.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5756">
+      <rect
+         style="fill:#f2f5f9;fill-opacity:1;stroke-width:0.286782;stop-color:#000000"
+         id="rect5758"
+         width="254"
+         height="150.61362"
+         x="-103.14964"
+         y="97.680687"
+         rx="2.18049"
+         ry="2.18049" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     inkscape:snap-page="true"
+     inkscape:window-maximized="1"
+     inkscape:window-y="36"
+     inkscape:window-x="0"
+     inkscape:window-height="1036"
+     inkscape:window-width="1920"
+     inkscape:lockguides="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-others="false"
+     inkscape:object-nodes="true"
+     inkscape:snap-nodes="true"
+     inkscape:snap-global="true"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="g8001"
+     inkscape:document-units="mm"
+     inkscape:cy="586.97659"
+     inkscape:cx="424.41457"
+     inkscape:zoom="0.66578009"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#acacac"
+     id="base"
+     inkscape:snap-center="true"
+     inkscape:snap-object-midpoints="true"
+     showguides="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-5.5670975,-358.8436)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <g
+       id="g7672"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <g
+         id="g8145">
+        <g
+           id="g8001">
+          <g
+             id="ic_Remove"
+             transform="matrix(0.66666668,0,0,0.66666668,58.217894,240.13001)">
+            <circle
+               id="circle3545-6"
+               fill="#000000"
+               opacity="0.3"
+               cx="-75.801193"
+               cy="181.24538"
+               r="3.175"
+               style="fill:#dc3545;fill-opacity:1;stroke-width:0.352777" />
+            <rect
+               rx="0.26458332"
+               height="0.52916664"
+               width="4.2333331"
+               y="74.295715"
+               x="-183.87604"
+               id="rect3547-8"
+               style="fill:#dc3545;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583"
+               transform="rotate(-45)" />
+            <rect
+               rx="0.26458332"
+               height="0.52916664"
+               width="4.2333331"
+               y="181.49478"
+               x="72.443634"
+               transform="rotate(45)"
+               opacity="0.3"
+               id="rect3549-0"
+               style="opacity:1;fill:#dc3545;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
