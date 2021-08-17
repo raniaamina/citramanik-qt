@@ -1,0 +1,3 @@
+#!/usr/bin/python3
+from citramanik.main import main
+main()

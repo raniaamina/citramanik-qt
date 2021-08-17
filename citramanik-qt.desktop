@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Categories=Graphics;VectorGraphics;GTK;
+Name=citramanik-qt
+Comment="Bulk SVG Export Tool"
+TryExec=/opt/citramanik-qt/citramanik-qt
+Exec=/opt/citramanik-qt/citramanik-qt %F
+Icon=citramanik-qt
+MimeType=image/svg+xml;
+X-KDE-Library=citramanik-qt
+X-KDE-FactoryName=devlovers
+X-KDE-ServiceType=utils

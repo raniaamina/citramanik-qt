@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="inkporter-svg-v2lgfj6j.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 8.4666672 8.4666671"
+   height="8.4666672mm"
+   width="8.4666672mm"
+   inkscape:export-filename="/home/sherlock/Project/MatePorter/Inksplit.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5756">
+      <rect
+         style="fill:#f2f5f9;fill-opacity:1;stroke-width:0.286782;stop-color:#000000"
+         id="rect5758"
+         width="254"
+         height="150.61362"
+         x="-103.14964"
+         y="97.680687"
+         rx="2.18049"
+         ry="2.18049" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     inkscape:snap-page="true"
+     inkscape:window-maximized="1"
+     inkscape:window-y="36"
+     inkscape:window-x="0"
+     inkscape:window-height="1036"
+     inkscape:window-width="1920"
+     inkscape:lockguides="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-others="false"
+     inkscape:object-nodes="true"
+     inkscape:snap-nodes="true"
+     inkscape:snap-global="true"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="g8001"
+     inkscape:document-units="mm"
+     inkscape:cy="586.97659"
+     inkscape:cx="424.41457"
+     inkscape:zoom="0.66578009"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#acacac"
+     id="base"
+     inkscape:snap-center="true"
+     inkscape:snap-object-midpoints="true"
+     showguides="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(92.814604,-320.20994)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <g
+       id="g7672"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <g
+         id="g7005"
+         transform="translate(-13.120197)">
+        <g
+           id="g7146"
+           transform="translate(-0.02671181)">
+          <g
+             id="g4821"
+             transform="translate(11.662485,231.56694)">
+            <g
+               id="g4819"
+               transform="translate(-16.620343,-25.430501)">
+              <g
+                 id="ic_Add"
+                 stroke="none"
+                 stroke-width="1"
+                 fill="none"
+                 fill-rule="evenodd"
+                 transform="matrix(0.35277778,0,0,0.35277778,-74.709837,114.0735)">
+                <rect
+                   id="rect4807"
+                   x="0"
+                   y="0"
+                   width="24"
+                   height="24" />
+                <path
+                   d="m 3.5,21 h 17 C 21.328427,21 22,20.328427 22,19.5 V 8.5 C 22,7.6715729 21.328427,7 20.5,7 H 10 L 7.4393398,4.4393398 C 7.1580353,4.1580353 6.7765044,4 6.3786797,4 H 3.5 C 2.6715729,4 2,4.6715729 2,5.5 v 14 C 2,20.328427 2.6715729,21 3.5,21 Z"
+                   id="path4809"
+                   fill="#000000"
+                   opacity="0.3"
+                   style="fill:#ffffff;fill-opacity:1" />
+                <path
+                   d="m 11,13 v -2 c 0,-0.552285 0.447715,-1 1,-1 0.552285,0 1,0.447715 1,1 v 2 h 2 c 0.552285,0 1,0.447715 1,1 0,0.552285 -0.447715,1 -1,1 h -2 v 2 c 0,0.552285 -0.447715,1 -1,1 -0.552285,0 -1,-0.447715 -1,-1 V 15 H 9 C 8.4477153,15 8,14.552285 8,14 8,13.447715 8.4477153,13 9,13 Z"
+                   id="path4811"
+                   fill="#000000"
+                   style="fill:#ffffff;fill-opacity:1" />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
