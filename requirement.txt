@@ -1,13 +1,6 @@
-altgraph==0.17
 appdirs==1.4.4
-importlib-metadata==3.10.0
 lxml==4.6.3
 Pillow==8.1.2
-Pillow-PIL==0.1.dev0
-pyinstaller @ https://github.com/pyinstaller/pyinstaller/archive/b2e062c47b7990c708c6524137509bfd4d00fa90.zip
-pyinstaller-hooks-contrib==2021.1
-PyQt5==5.15.4
-PyQt5-Qt5==5.15.2
-PyQt5-sip==12.8.1
-typing-extensions==3.7.4.3
-zipp==3.4.1
+pyinstaller==4.5.1
+PyQt5==5.12.3
+PyQt5-sip==12.9.0

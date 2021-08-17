@@ -29,7 +29,7 @@ class CitraManikThread(QThread):
 
     def __init__(self, parent, tempdir):
         super(CitraManikThread, self).__init__(parent=parent)
-        self.inkscape = parent.options.inkscape_path
+        self.inkscape = [parent.options.inkscape_path]
         self.colorspace = parent.options.colorspace.upper()
         self.outputdir = parent.options.outputdir
         self.dpi = parent.options.dpi
@@ -53,17 +53,52 @@ class CitraManikThread(QThread):
         self.use_vectorPDF = parent.use_vectorPDF
         self.eps_useCMYK = parent.eps_useCMYK
         self.gs_binary = parent.options.ghostscript_path
+        self.is_progressive = parent.options.is_progressive
+        self.optimize_png = parent.options.optimize_png
+        self.pngquant = parent.options.pngquant_path
+        self.onlyPage = parent.options.pageOnly
+
+        if parent.use_flatpak:
+            self.inkscape = ["flatpak", "run", "--filesystem=/tmp", "org.inkscape.Inkscape"]
+
         self.tempdir = tempdir
         self.booklet_pages = []
+
+    def toBeProcessed(self, idItem):
+        if not self.onlyPage:
+            argument = f"--export-id={idItem}"
+        else:
+            argument = "--export-area-page"
+            
+        return argument
 
     def process_call(self, command):
         # CREATE_NO_WINDOW = 0x08000000
         if os.name == "nt":
             stinfo = subprocess.STARTUPINFO()
             stinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-            subprocess.Popen(command, startupinfo=stinfo).wait()
+            subprocess.Popen(command, startupinfo=stinfo, stdout=sys.stdout, stderr=sys.stdout).wait()
         else:
             subprocess.Popen(command, stdout=sys.stdout, stderr=sys.stdout).wait()
+
+    def execute_task_jpg(self, item, is_progressive):
+        target_jpg= f"{self.outputdir}{os.sep}JPG{os.sep}{os.path.basename(item)[:-4]}.jpg"
+        if is_progressive:
+            target_jpg= f"{self.outputdir}{os.sep}JPG_PROGRESSIVE{os.sep}{os.path.basename(item)[:-4]}.jpg"
+        if self.colorspace == "CMYK":
+            newname = os.path.basename(target_jpg)[:-4] + "-CMYK.jpg"
+            dirname = os.path.dirname(target_jpg) + "-CMYK"
+            target_jpg = dirname + os.sep + newname
+        Image.open(item).convert(self.colorspace).save(target_jpg, quality=self.quality, progression=is_progressive)
+        return target_jpg
+
+    def execute_task_optimize_png(self, item):
+        ''' Optimize PNG (pngquant) Executor '''
+        target_optimized_png = f"{self.outputdir}{os.sep}PNG_OPTIMIZED{os.sep}{os.path.basename(item)[:-4]}.png" 
+        command = [ self.pngquant, item, "-f", "-o", target_optimized_png ]
+        self.process_call(command)
+        return target_optimized_png
+
 
     def execute_task_png(self, item):
         ''' PNG exports executor '''
@@ -78,18 +113,13 @@ class CitraManikThread(QThread):
             raise CitraManikCancelException(idformat, item)
 
         temp_png = f"{self.tempdir}{os.sep}{item}.png"
-        command = [ self.inkscape, f"--export-id={item}", "--export-id-only", f"--export-dpi={self.dpi}", "--export-type=png", f"--export-filename={temp_png}", self.inputfile ]
+        command = self.inkscape + [ self.toBeProcessed(item), "--export-id-only", f"--export-dpi={self.dpi}", "--export-type=png", f"--export-filename={temp_png}", self.inputfile ]
         # subprocess.Popen(command).wait()
         self.process_call(command)
         ccc = f"{temp_png} processed!"
         if self.with_jpg or self.with_webp:
             if self.with_jpg:
-                target_jpg = f"{self.outputdir}{os.sep}JPG{os.sep}{item}.jpg"
-                if self.colorspace == "CMYK":
-                    newname = os.path.basename(target_jpg)[:-4] + "-CMYK.jpg"
-                    dirname = os.path.dirname(target_jpg) + "-CMYK"
-                    target_jpg = dirname + os.sep + newname
-                Image.open(temp_png).convert(self.colorspace).save(target_jpg, quality=self.quality)
+                target_jpg = self.execute_task_jpg(temp_png, self.is_progressive)
                 self.export_format_complete.emit(f"{item}.jpg")
                 ccc += f" dan {target_jpg} processed!"
             if self.with_webp:
@@ -98,8 +128,12 @@ class CitraManikThread(QThread):
                 self.export_format_complete.emit(f"{item}.webp")
                 ccc += f" dan {target_webp} processed!"
         if self.with_png:
-            target_png = f"{self.outputdir}{os.sep}PNG"
-            copy2(temp_png, target_png)
+            if self.optimize_png:
+                target_optimized = self.execute_task_optimize_png(temp_png)
+                ccc += f" dan {target_optimized} processed!"
+            else:
+                target_png = f"{self.outputdir}{os.sep}PNG"
+                copy2(temp_png, target_png)
             self.export_format_complete.emit(f"{item}.png")
         return ccc
 
@@ -110,7 +144,7 @@ class CitraManikThread(QThread):
             idformat = "pdf"
             raise CitraManikCancelException(idformat, item)
         pdf_temp = f"{self.tempdir}{os.sep}{item}.pdf"
-        command = [ self.inkscape, f"--export-id={item}", "--export-id-only", f"--export-dpi={self.dpi}", "--export-type=pdf", f"--export-filename={pdf_temp}", self.inputfile ]
+        command = self.inkscape + [ self.toBeProcessed(item), "--export-id-only", f"--export-dpi={self.dpi}", "--export-type=pdf", f"--export-filename={pdf_temp}", self.inputfile ]
         # subprocess.Popen(command).wait()
         self.process_call(command)
         ccc = f"{pdf_temp} processed!"
@@ -161,7 +195,7 @@ class CitraManikThread(QThread):
             raise CitraManikCancelException(idformat, item)
         OUTDIR = f"{self.outputdir}{os.sep}EPS"
         target_eps = f"{OUTDIR}{os.sep}{item}.eps"
-        command = [ self.inkscape, f"--export-id={item}", "--export-id-only", f"--export-dpi={self.dpi}", "--export-type=eps", f"--export-filename={target_eps}", self.inputfile ]
+        command = self.inkscape + [ self.toBeProcessed(item), "--export-id-only", f"--export-dpi={self.dpi}", "--export-type=eps", f"--export-filename={target_eps}", self.inputfile ]
         # subprocess.Popen(command).wait()
         self.process_call(command)
         self.export_format_complete.emit(f"{item}.eps")
@@ -176,7 +210,7 @@ class CitraManikThread(QThread):
             raise CitraManikCancelException(idformat, item)
         OUTDIR = f"{self.outputdir}{os.sep}SVG"
         target_svg = f"{OUTDIR}/{item}.svg"
-        command = [ self.inkscape, f"--export-id={item}", "--export-id-only", f"--export-dpi={self.dpi}", "--export-type=svg", "--export-plain-svg", f"--export-filename={target_svg}", self.inputfile ]
+        command = self.inkscape + [ self.toBeProcessed(item), "--export-id-only", f"--export-dpi={self.dpi}", "--export-type=svg", "--export-plain-svg", f"--export-filename={target_svg}", self.inputfile ]
          # subprocess.Popen(command).wait()
         self.process_call(command)
         ccc = f"{target_svg} processed!"

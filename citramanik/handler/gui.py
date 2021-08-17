@@ -28,19 +28,32 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
         super(CitramanikWindow, self).__init__(*args, **kwargs)
         self.setupUi(self)
 
-        if not self.appconfigs.get_inkscape_path():
-            show_message(QMessageBox.Critical, "Inkscape not detected, if you're using AppImage/Portable version of Inkscape, please configure it on the Settings tab")
-            # print("No Internal Inkscape")
-            self.options.inkscape_path = ""
-        else:
-            self.options.inkscape_path = self.appconfigs.get_inkscape_path()
+        # check inkscape from console argument
+        if not self.options.inkscape_path:
+            if not self.appconfigs.get_inkscape_path():
+                show_message(QMessageBox.Critical, "Inkscape not detected, if you're using AppImage/Portable version of Inkscape, please configure it on the Settings tab")
+                # print("No Internal Inkscape")
+                self.options.inkscape_path = ""
+            else:
+                self.options.inkscape_path = self.appconfigs.get_inkscape_path()
 
-        if not self.appconfigs.get_ghostscript_path():
-            show_message(QMessageBox.Warning, "Ghostscript not detected, please configure it in the Settings tab or you can't do BOOKLET/PDF/JPG/EPS exports with CMYK mode")
-            # print("No Internal Inkscape")
-            self.options.ghostscript_path = ""
-        else:
-            self.options.ghostscript_path = self.appconfigs.get_ghostscript_path()
+        # check ghostscript from console argument
+        if not self.options.ghostscript_path:
+            if not self.appconfigs.get_ghostscript_path():
+                show_message(QMessageBox.Warning, "Ghostscript not detected, please configure it in the Settings tab, otherwise you can't do BOOKLET/PDF/JPG/EPS exports with CMYK mode")
+                # print("No Internal Ghostscript")
+                self.options.ghostscript_path = ""
+            else:
+                self.options.ghostscript_path = self.appconfigs.get_ghostscript_path()
+
+        # check pngquant from console argument
+        if not self.options.pngquant_path:
+            if not self.appconfigs.get_pngquant_path():
+                show_message(QMessageBox.Warning, "Pngquant not detected! Please configure it in the Settings tab, otherwise you can't use PNG optimized feature. \n\nGet Pngquant from your distro repository, or download at https://pngquant.org/")
+                # print("No Internal Pngquant")
+                self.options.pngquant_path = ""
+            else:
+                self.options.pngquant_path = self.appconfigs.get_pngquant_path()
 
         # initialize gui data
         self.__initialize_gui()
@@ -52,11 +65,34 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
         self.btn_extratools.clicked.connect(self.__on_btn_extratools_clicked)
         self.btn_browse_inkscape.clicked.connect(self.__on_btn_browse_inkscapepath_clicked)
         self.btn_browse_ghostscript.clicked.connect(self.__on_btn_browse_ghostscriptpath_clicked)
+        self.btn_browse_pngquant.clicked.connect(self.__on_btn_browse_pngquantpath_clicked)
         self.btn_opensvg.clicked.connect(self.__on_btn_opensvg_clicked)
         self.btn_export.clicked.connect(self.__on_btn_export_clicked)
         self.btn_browse_outputdir.clicked.connect(self.__on_btn_browse_outputdir)
 
+        self.use_flatpak = False
+
+        self.options.pageOnly = False
+
+        self.checkbox_flatpak.toggled.connect(self.__on_flatpak_toggled)
+
+        self.combo_export_mode.currentIndexChanged.connect(self.handlePAGE)
+        self.checkBox_JPG.toggled.connect(self.__on_jpg_toggled)
+        self.checkBox_PNG.toggled.connect(self.__on_png_toggled)
+
+    def handlePAGE(self):
+        if self.combo_export_mode.currentIndex() == 0:
+            self.options.pageOnly = False
+            self.field_pattern.setDisabled(False)
+        else:
+            self.options.pageOnly = True
+            self.field_pattern.setDisabled(True)
+
     def __initialize_gui(self):
+
+        self.options.is_progressive = False
+        self.options.optimize_png = False
+
         if self.options.inputfile:
             self.field_svginput.setText(self.options.inputfile)
         if self.options.outputdir:
@@ -65,6 +101,7 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
             self.field_pattern.setText(self.options.pattern)
         if self.options.with_jpg:
             self.checkBox_JPG.setChecked(True)
+            self.checkBox_JPGProgressive.setEnabled(True)
         if self.options.with_png:
             self.checkBox_PNG.setChecked(True)
         if self.options.with_eps:
@@ -106,9 +143,31 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
         else:
             self.field_ghostscript_path.setText(self.appconfigs.get_ghostscript_path())
 
+        if self.options.pngquant_path:
+            self.field_pngquant_path.setText(self.options.pngquant_path)
+        else:
+            self.field_pngquant_path.setText(self.appconfigs.get_pngquant_path())
+
         self.spinBox_Threads.setValue(self.appconfigs.get_threads_config())
         self.tabWidget.setCurrentIndex(0)
         self.banner_update.hide()
+
+    def __on_flatpak_toggled(self, status):
+        self.use_flatpak = status
+        self.field_inkscape_path.setEnabled(not(status))
+        self.btn_browse_inkscape.setEnabled(not(status))
+
+    def __on_jpg_toggled(self, status):
+        self.options.with_jpg = status
+        self.checkBox_JPGProgressive.setEnabled(status)
+        if not status:
+            self.checkBox_JPGProgressive.setChecked(False)
+
+    def __on_png_toggled(self, status):
+        self.options.with_png = status
+        self.checkBox_Optimize_PNG.setEnabled(status)
+        if not status:
+            self.checkBox_Optimize_PNG.setChecked(False)
 
     def __on_btn_extratools_clicked(self):
         ''' Extra tools button click handler '''
@@ -144,6 +203,17 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
                 show_message(QMessageBox.Critical, "Invalid Ghostscript Executable File")
                 self.btn_browse_ghostscript.clicked.emit()
 
+    def __on_btn_browse_pngquantpath_clicked(self):
+        ''' Browse Pngquant path button click handler '''
+        opened_file, _ = QFileDialog.getOpenFileName(self, "Pngquant Path", "", "Executable Files (*)")
+        if opened_file:
+            if os.path.isfile(opened_file) and os.access(opened_file, os.X_OK):
+                self.options.pngquant_path = opened_file
+                self.field_pngquant_path.setText(opened_file)
+            else:
+                show_message(QMessageBox.Critical, "Invalid Pngquant Executable File")
+                self.btn_browse_pngquant.clicked.emit()
+
     def __on_btn_browse_outputdir(self):
         ''' Browse output directory button click handler '''
         output_dir = QFileDialog.getExistingDirectory(self, "Select Output Directory", "", QFileDialog.ShowDirsOnly)
@@ -172,7 +242,7 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
             show_message(QMessageBox.Critical, f"SVG File: {self.options.inputfile} is not exist, export aborted!")
             return
 
-        if not self.options.pattern:
+        if not self.options.pattern and not self.options.pageOnly:
             show_message(QMessageBox.Critical, "Id pattern not specified, export aborted!")
             return
         if not self.__check_options():
@@ -185,17 +255,28 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
             if not self.is_outputdir_confirmed():
                 return
 
+        if self.options.optimize_png:
+            if not self.is_valid_pngquant():
+                return
+
         try:
-            sys.stdout = open(f'{self.get_tmp_exportdir()}/citramanik.log', 'w')
-            
+            if os.name == "nt":
+                sys.stdout = open(f'{tempfile.gettempdir()}/citramanik.log', 'w')
+            else:
+                sys.stdout = open(f'{self.get_tmp_exportdir()}/citramanik.log', 'w')
+
             parser = SVGParser(self.options.inputfile)
-            self.ids_to_process = parser.get_objects_by_id(self.options.pattern)
+            if self.options.pageOnly:
+                dir, filename = os.path.split(self.field_svginput.text())
+                self.ids_to_process = [filename.replace(".svg", "")]
+            else:
+                self.ids_to_process = parser.get_objects_by_id(self.options.pattern)
             num_of_ids = len(self.ids_to_process)
-            
+
             if num_of_ids < 1 :
                 show_message(QMessageBox.Critical, f"Cannot find any object with id pattern {self.options.pattern}. Aborting export...")
                 return
-            
+
             self.process_to_finished = 0
             self.use_bitmapPNG = False
             self.use_vectorPDF = False
@@ -205,6 +286,8 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
                 self.use_bitmapPNG = True
                 self.process_to_finished += num_of_ids
                 OUTDIR = f"{self.options.outputdir}{os.sep}PNG"
+                if self.options.optimize_png:
+                    OUTDIR = f"{self.options.outputdir}{os.sep}PNG_OPTIMIZED"
                 if not os.path.exists(OUTDIR):
                     os.makedirs(OUTDIR)
 
@@ -212,8 +295,12 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
                 self.use_bitmapPNG = True
                 self.process_to_finished += num_of_ids
                 OUTDIR = f"{self.options.outputdir}{os.sep}JPG"
+                if self.options.is_progressive:
+                    OUTDIR = f"{self.options.outputdir}{os.sep}JPG_PROGRESSIVE"
                 if self.options.colorspace.upper() == "CMYK":
                     OUTDIR = f"{self.options.outputdir}{os.sep}JPG-CMYK"
+                    if self.options.is_progressive:
+                        OUTDIR = f"{self.options.outputdir}{os.sep}JPG_PROGRESSIVE-CMYK"
                 if not os.path.exists(OUTDIR):
                     os.makedirs(OUTDIR)
 
@@ -306,6 +393,9 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
         self.options.colorspace = self.combo_colorspace.currentText()
         self.options.with_png = self.checkBox_PNG.isChecked()
         self.options.with_jpg = self.checkBox_JPG.isChecked()
+        self.options.is_progressive = self.checkBox_JPGProgressive.isChecked()
+        self.options.optimize_png = self.checkBox_Optimize_PNG.isChecked()
+        
 
         if self.options.with_jpg and not self.options.with_png:
             self.options.only_jpg = True
@@ -367,7 +457,11 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
                 stinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
                 res = subprocess.check_output([self.options.inkscape_path,"--version"], stderr=subprocess.STDOUT, startupinfo=stinfo)
             else:
-                res = subprocess.check_output([self.options.inkscape_path,"--version"], stderr=subprocess.STDOUT)
+                # check if user prefer to use flatpak
+                if self.checkbox_flatpak.isChecked():
+                    res = subprocess.check_output(["flatpak", "run", "org.inkscape.Inkscape", "--version"], stderr=subprocess.STDOUT)
+                else:
+                    res = subprocess.check_output([self.options.inkscape_path,"--version"], stderr=subprocess.STDOUT)
         except FileNotFoundError:
             show_message(QMessageBox.Critical, "Specified path doesn't exists! Please provide valid Inkscape path. It usually in /usr/bin/inkscape for Linux or C:/Program File/Inkscape/Inkscape.exe for Windows")
             self.Settings.setFocus(True)
@@ -407,6 +501,34 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
         self.tabWidget.setCurrentIndex(self.tabWidget.indexOf(self.Settings))
         return False
 
+    def is_valid_pngquant(self):
+        ''' Check if pngquant path provided by user or autodetected pngquant is valid '''
+        if not self.options.pngquant_path:
+            self.options.pngquant_path = self.field_pngquant_path.text()
+
+        if self.options.pngquant_path == "":
+            show_message(QMessageBox.Critical, "Please set Pngquant path first. It usually in /usr/bin/pngquant for Linux")
+            self.tabWidget.setCurrentIndex(self.tabWidget.indexOf(self.Settings))
+            return False
+        res = b""
+        try:
+            if os.name == "nt":
+                stinfo = subprocess.STARTUPINFO()
+                stinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+                res = subprocess.check_output([self.options.pngquant_path, "--help"], stderr=subprocess.STDOUT, startupinfo=stinfo)
+            else:
+                res = subprocess.check_output([self.options.pngquant_path, "--help"], stderr=subprocess.STDOUT)
+        except FileNotFoundError:
+            show_message(QMessageBox.Critical, "Invalid Pngquant Binary! Please provide valid Pngquant path. It usually in /usr/bin/pngquant for Linux")
+            self.tabWiget.setCurrentIndex(self.tabWidget.indexOf(self.Settings))
+            return False
+        if "pngquant," in res.decode("utf-8"):
+            return True
+        # check again if pngquant is found, otherwise turn exception
+        show_message(QMessageBox.Critical, "Invalid Pngquant Binary! Please provide valid Pngquant path. It usually in /usr/bin/pngquant for Linux")
+        self.tabWiget.setCurrentIndex(self.tabWidget.indexOf(self.Settings))
+        return False
+
     def is_outputdir_confirmed(self):
         ''' Confirm user to continue using selected directory that not empty '''
         if os.listdir(self.options.outputdir):
@@ -432,7 +554,12 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
         if len(failedjobs) < 1:
             # all exports was successful
             export_formats = ", ".join(self.export_formats)
-            msg = f"{len(self.ids_to_process)} objects with pattern {self.options.pattern} was successfully exported as {export_formats} in {self.options.outputdir} in {elapsed_time}"
+            if self.options.pageOnly:
+                dir, filename = os.path.split(self.field_svginput.text())
+                self.ids_to_process = [filename.replace(".svg", "")]
+                msg = f"{filename} was successfully exported as {export_formats} in {self.options.outputdir} in {elapsed_time}"
+            else:
+                msg = f"{len(self.ids_to_process)} objects with pattern {self.options.pattern} was successfully exported as {export_formats} in {self.options.outputdir} in {elapsed_time}"
             show_message(QMessageBox.Information, msg)
             return
         self.ourprogressbar.close()
@@ -454,7 +581,9 @@ class CitramanikWindow(QMainWindow, Ui_Citramanik):
         self.appconfigs.set_dpi(self.field_dpi.value())
         self.appconfigs.set_ghostscript_path(self.field_ghostscript_path.text())
         self.appconfigs.set_inkscape_path(self.field_inkscape_path.text())
+        self.appconfigs.set_pngquant_path(self.field_pngquant_path.text())
         self.appconfigs.set_threads_config(self.spinBox_Threads.value())
         self.appconfigs.set_output_dir(self.field_exportdir.text())
         self.appconfigs.set_quality(self.field_quality.value())
+        self.appconfigs.set_use_flatpak(self.checkbox_flatpak.isChecked())
         self.appconfigs.write_to_file()

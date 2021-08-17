@@ -33,6 +33,12 @@ class CitramanikOptions:
                 help="DPI for PNG/JPG/PDF, default value is 96")
         parser.add_argument('--quality', type=int, dest='quality', action='store', default=90,
                 help="Compression quality for JPG export, default value is 90")
+        parser.add_argument('--inkscape-path', dest='inkscape_path', action='store', 
+                help="Inkscape Path")
+        parser.add_argument('--gs-path', dest='ghostscript_path', action='store', 
+                help="Ghostscript Path")
+        parser.add_argument('--pngquant-path', dest='pngquant_path', action='store', 
+                help="Optipng Path")
         parser.parse_known_args(namespace=self)
 
     def __repr__(self):

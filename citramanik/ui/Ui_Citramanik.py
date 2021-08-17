@@ -10,9 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from citramanik.ui.citramanik_resources_rc import *
-
 from citramanik import get_versions, __donate_url__, __website_url__
-
 
 class Ui_Citramanik(object):
 
@@ -169,7 +167,7 @@ class Ui_Citramanik(object):
         self.MainSetting.setStyleSheet("color: rgb(53, 53, 53);")
         self.MainSetting.setObjectName("MainSetting")
         self.layoutWidget = QtWidgets.QWidget(self.MainSetting)
-        self.layoutWidget.setGeometry(QtCore.QRect(20, 10, 433, 391))
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 10, 441, 391))
         self.layoutWidget.setObjectName("layoutWidget")
         self.wrapper_main = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.wrapper_main.setContentsMargins(0, 0, 0, 0)
@@ -280,7 +278,7 @@ class Ui_Citramanik(object):
         self.wrapper_idpattern.addWidget(self.field_pattern)
         self.wrapper_svg.addLayout(self.wrapper_idpattern)
         self.wrapper_main.addLayout(self.wrapper_svg)
-        spacerItem3 = QtWidgets.QSpacerItem(17, 13, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem3 = QtWidgets.QSpacerItem(17, 150, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.wrapper_main.addItem(spacerItem3)
         self.wrapper_exports = QtWidgets.QVBoxLayout()
         self.wrapper_exports.setObjectName("wrapper_exports")
@@ -317,7 +315,7 @@ class Ui_Citramanik(object):
         self.wrapper_exportcheckbox.addWidget(self.checkBox_BOOK)
         self.wrapper_exports.addLayout(self.wrapper_exportcheckbox)
         self.wrapper_main.addLayout(self.wrapper_exports)
-        spacerItem4 = QtWidgets.QSpacerItem(17, 13, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem4 = QtWidgets.QSpacerItem(17, 150, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.wrapper_main.addItem(spacerItem4)
         self.wrapper_extraparams = QtWidgets.QVBoxLayout()
         self.wrapper_extraparams.setObjectName("wrapper_extraparams")
@@ -425,17 +423,30 @@ class Ui_Citramanik(object):
         self.combo_colorspace.addItem("")
         self.wrapper_extramaparamsfield.addWidget(self.combo_colorspace)
         self.wrapper_extraparams.addLayout(self.wrapper_extramaparamsfield)
-        self.wrapper_main.addLayout(self.wrapper_extraparams)
-        spacerItem5 = QtWidgets.QSpacerItem(17, 228, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.wrapper_main.addItem(spacerItem5)
-        self.wrapper_zips = QtWidgets.QHBoxLayout()
-        self.wrapper_zips.setObjectName("wrapper_zips")
+        self.wrapper_exportcheckbox2 = QtWidgets.QHBoxLayout()
+        self.wrapper_exportcheckbox2.setObjectName("wrapper_exportcheckbox2")
         self.checkBox_ZIP = QtWidgets.QCheckBox(self.layoutWidget)
         self.checkBox_ZIP.setStyleSheet("color: rgb(53, 53, 53);")
         self.checkBox_ZIP.setObjectName("checkBox_ZIP")
-        self.wrapper_zips.addWidget(self.checkBox_ZIP)
-        spacerItem6 = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.wrapper_zips.addItem(spacerItem6)
+        self.wrapper_exportcheckbox2.addWidget(self.checkBox_ZIP)
+        self.checkBox_JPGProgressive = QtWidgets.QCheckBox(self.layoutWidget)
+        self.checkBox_JPGProgressive.setEnabled(False)
+        self.checkBox_JPGProgressive.setChecked(False)
+        self.checkBox_JPGProgressive.setObjectName("checkBox_JPGProgressive")
+        self.wrapper_exportcheckbox2.addWidget(self.checkBox_JPGProgressive)
+        self.checkBox_Optimize_PNG = QtWidgets.QCheckBox(self.layoutWidget)
+        self.checkBox_Optimize_PNG.setEnabled(False)
+        self.checkBox_Optimize_PNG.setChecked(False)
+        self.checkBox_Optimize_PNG.setObjectName("checkBox_Optimize_PNG")
+        self.wrapper_exportcheckbox2.addWidget(self.checkBox_Optimize_PNG)
+        spacerItem5 = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.wrapper_exportcheckbox2.addItem(spacerItem5)
+        self.wrapper_extraparams.addLayout(self.wrapper_exportcheckbox2)
+        self.wrapper_main.addLayout(self.wrapper_extraparams)
+        spacerItem6 = QtWidgets.QSpacerItem(17, 228, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.wrapper_main.addItem(spacerItem6)
+        self.wrapper_zips = QtWidgets.QHBoxLayout()
+        self.wrapper_zips.setObjectName("wrapper_zips")
         self.wrapper_saveto = QtWidgets.QHBoxLayout()
         self.wrapper_saveto.setObjectName("wrapper_saveto")
         self.label_saveto = QtWidgets.QLabel(self.layoutWidget)
@@ -503,10 +514,17 @@ class Ui_Citramanik(object):
         self.label_inkscape.setStyleSheet("color: rgb(53, 53, 53);")
         self.label_inkscape.setObjectName("label_inkscape")
         self.wrapper_inkscape.addWidget(self.label_inkscape)
-        spacerItem8 = QtWidgets.QSpacerItem(96, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        spacerItem8 = QtWidgets.QSpacerItem(98, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.wrapper_inkscape.addItem(spacerItem8)
         self.field_inkscape_path = QtWidgets.QLineEdit(self.layoutWidget_2)
         self.field_inkscape_path.setMinimumSize(QtCore.QSize(0, 28))
+        self.field_inkscape_path.setStyleSheet("QLineEdit:!enabled {\n"
+"color: rgb(138, 138, 138);\n"
+"}\n"
+"\n"
+"QLineEdit:enabled {\n"
+"color: rgb(53, 53, 53);\n"
+"}")
         self.field_inkscape_path.setObjectName("field_inkscape_path")
         self.wrapper_inkscape.addWidget(self.field_inkscape_path)
         self.btn_browse_inkscape = QtWidgets.QPushButton(self.layoutWidget_2)
@@ -526,16 +544,28 @@ class Ui_Citramanik(object):
         self.btn_browse_inkscape.setObjectName("btn_browse_inkscape")
         self.wrapper_inkscape.addWidget(self.btn_browse_inkscape)
         self.wrapper_settings.addLayout(self.wrapper_inkscape)
+        self.checkbox_flatpak = QtWidgets.QCheckBox(self.layoutWidget_2)
+        self.checkbox_flatpak.setStyleSheet("color: rgb(53, 53, 53);")
+        self.checkbox_flatpak.setObjectName("checkbox_flatpak")
+        self.wrapper_settings.addWidget(self.checkbox_flatpak)
         self.wrapper_ghostscript = QtWidgets.QHBoxLayout()
         self.wrapper_ghostscript.setObjectName("wrapper_ghostscript")
         self.label_ghostscript = QtWidgets.QLabel(self.layoutWidget_2)
         self.label_ghostscript.setStyleSheet("color: rgb(53, 53, 53);")
         self.label_ghostscript.setObjectName("label_ghostscript")
         self.wrapper_ghostscript.addWidget(self.label_ghostscript)
-        spacerItem9 = QtWidgets.QSpacerItem(96, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        spacerItem9 = QtWidgets.QSpacerItem(83, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.wrapper_ghostscript.addItem(spacerItem9)
         self.field_ghostscript_path = QtWidgets.QLineEdit(self.layoutWidget_2)
         self.field_ghostscript_path.setMinimumSize(QtCore.QSize(0, 28))
+        self.field_ghostscript_path.setStyleSheet("QLineEdit:!enabled {\n"
+"color: rgb(138, 138, 138);\n"
+"}\n"
+"\n"
+"QLineEdit:enabled {\n"
+"color: rgb(53, 53, 53);\n"
+"}")
+        self.field_ghostscript_path.setText("")
         self.field_ghostscript_path.setObjectName("field_ghostscript_path")
         self.wrapper_ghostscript.addWidget(self.field_ghostscript_path)
         self.btn_browse_ghostscript = QtWidgets.QPushButton(self.layoutWidget_2)
@@ -555,13 +585,45 @@ class Ui_Citramanik(object):
         self.btn_browse_ghostscript.setObjectName("btn_browse_ghostscript")
         self.wrapper_ghostscript.addWidget(self.btn_browse_ghostscript)
         self.wrapper_settings.addLayout(self.wrapper_ghostscript)
-        self.darkTheme = QtWidgets.QCheckBox(self.layoutWidget_2)
-        self.darkTheme.setEnabled(False)
-        self.darkTheme.setStyleSheet("color: rgb(124, 124, 124);")
-        self.darkTheme.setObjectName("darkTheme")
-        self.wrapper_settings.addWidget(self.darkTheme)
-        spacerItem10 = QtWidgets.QSpacerItem(20, 236, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
-        self.wrapper_settings.addItem(spacerItem10)
+        self.wrapper_pngquant = QtWidgets.QHBoxLayout()
+        self.wrapper_pngquant.setObjectName("wrapper_pngquant")
+        self.label_pngquant = QtWidgets.QLabel(self.layoutWidget_2)
+        self.label_pngquant.setStyleSheet("color: rgb(53, 53, 53);")
+        self.label_pngquant.setObjectName("label_pngquant")
+        self.wrapper_pngquant.addWidget(self.label_pngquant)
+        spacerItem10 = QtWidgets.QSpacerItem(96, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        self.wrapper_pngquant.addItem(spacerItem10)
+        self.field_pngquant_path = QtWidgets.QLineEdit(self.layoutWidget_2)
+        self.field_pngquant_path.setMinimumSize(QtCore.QSize(0, 28))
+        self.field_pngquant_path.setStyleSheet("QLineEdit:!enabled {\n"
+"color: rgb(138, 138, 138);\n"
+"}\n"
+"\n"
+"QLineEdit:enabled {\n"
+"color: rgb(53, 53, 53);\n"
+"}")
+        self.field_pngquant_path.setText("")
+        self.field_pngquant_path.setObjectName("field_pngquant_path")
+        self.wrapper_pngquant.addWidget(self.field_pngquant_path)
+        self.btn_browse_pngquant = QtWidgets.QPushButton(self.layoutWidget_2)
+        self.btn_browse_pngquant.setMinimumSize(QtCore.QSize(80, 28))
+        self.btn_browse_pngquant.setStyleSheet("QPushButton{\n"
+"color: #fff;\n"
+"background-color: #b42b6f;\n"
+"border:0px solid;\n"
+"border-radius: 2px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{;\n"
+"color: #fff;\n"
+"background-color: rgb(206, 49, 128);\n"
+"border:none;\n"
+"}")
+        self.btn_browse_pngquant.setObjectName("btn_browse_pngquant")
+        self.wrapper_pngquant.addWidget(self.btn_browse_pngquant)
+        self.wrapper_settings.addLayout(self.wrapper_pngquant)
+        spacerItem11 = QtWidgets.QSpacerItem(20, 236, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        self.wrapper_settings.addItem(spacerItem11)
         self.tabWidget.addTab(self.Settings, "")
         self.About = QtWidgets.QWidget()
         self.About.setObjectName("About")
@@ -573,20 +635,20 @@ class Ui_Citramanik(object):
         self.wrapper_about.setObjectName("wrapper_about")
         self.wrapper_logocitramanik = QtWidgets.QHBoxLayout()
         self.wrapper_logocitramanik.setObjectName("wrapper_logocitramanik")
-        spacerItem11 = QtWidgets.QSpacerItem(148, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.wrapper_logocitramanik.addItem(spacerItem11)
+        spacerItem12 = QtWidgets.QSpacerItem(148, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.wrapper_logocitramanik.addItem(spacerItem12)
         self.label_logocitramanik = QtWidgets.QLabel(self.layoutWidget1)
         self.label_logocitramanik.setText("")
         self.label_logocitramanik.setPixmap(QtGui.QPixmap(":/image/imgs/citramanik-qt.png"))
         self.label_logocitramanik.setObjectName("label_logocitramanik")
         self.wrapper_logocitramanik.addWidget(self.label_logocitramanik)
-        spacerItem12 = QtWidgets.QSpacerItem(158, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.wrapper_logocitramanik.addItem(spacerItem12)
+        spacerItem13 = QtWidgets.QSpacerItem(158, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.wrapper_logocitramanik.addItem(spacerItem13)
         self.wrapper_about.addLayout(self.wrapper_logocitramanik)
         self.wrapper_titlecitramanik = QtWidgets.QHBoxLayout()
         self.wrapper_titlecitramanik.setObjectName("wrapper_titlecitramanik")
-        spacerItem13 = QtWidgets.QSpacerItem(118, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.wrapper_titlecitramanik.addItem(spacerItem13)
+        spacerItem14 = QtWidgets.QSpacerItem(118, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.wrapper_titlecitramanik.addItem(spacerItem14)
         self.wrapper_title = QtWidgets.QVBoxLayout()
         self.wrapper_title.setObjectName("wrapper_title")
         self.label_title = QtWidgets.QLabel(self.layoutWidget1)
@@ -610,8 +672,8 @@ class Ui_Citramanik(object):
         self.label_slug.setObjectName("label_slug")
         self.wrapper_title.addWidget(self.label_slug)
         self.wrapper_titlecitramanik.addLayout(self.wrapper_title)
-        spacerItem14 = QtWidgets.QSpacerItem(124, 64, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.wrapper_titlecitramanik.addItem(spacerItem14)
+        spacerItem15 = QtWidgets.QSpacerItem(124, 64, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.wrapper_titlecitramanik.addItem(spacerItem15)
         self.wrapper_about.addLayout(self.wrapper_titlecitramanik)
         self.CitramanikDescription = QtWidgets.QTextBrowser(self.layoutWidget1)
         font = QtGui.QFont()
@@ -630,7 +692,7 @@ class Ui_Citramanik(object):
         Citramanik.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Citramanik)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         self.combo_colorspace.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Citramanik)
 
@@ -662,6 +724,8 @@ class Ui_Citramanik(object):
         self.combo_colorspace.setItemText(0, _translate("Citramanik", "CMYK"))
         self.combo_colorspace.setItemText(1, _translate("Citramanik", "RGB"))
         self.checkBox_ZIP.setText(_translate("Citramanik", "ZIP Result"))
+        self.checkBox_JPGProgressive.setText(_translate("Citramanik", "Export as Progressive JPG"))
+        self.checkBox_Optimize_PNG.setText(_translate("Citramanik", "Optimize PNG"))
         self.label_saveto.setText(_translate("Citramanik", "Save to : "))
         self.field_exportdir.setPlaceholderText(_translate("Citramanik", "Browse Directory"))
         self.btn_browse_outputdir.setText(_translate("Citramanik", "Browse"))
@@ -669,22 +733,24 @@ class Ui_Citramanik(object):
         self.label_threads.setText(_translate("Citramanik", "Threads to use (4-8 is recommended)"))
         self.label_inkscape.setText(_translate("Citramanik", "Inkscape Path"))
         self.btn_browse_inkscape.setText(_translate("Citramanik", "Browse"))
+        self.checkbox_flatpak.setText(_translate("Citramanik", "Use Inkscape from Flatpak"))
         self.label_ghostscript.setText(_translate("Citramanik", "Ghostscript Path"))
         self.btn_browse_ghostscript.setText(_translate("Citramanik", "Browse"))
-        self.darkTheme.setText(_translate("Citramanik", "Use Dark Theme (Coming Soon)"))
+        self.label_pngquant.setText(_translate("Citramanik", "Pngquant Path"))
+        self.btn_browse_pngquant.setText(_translate("Citramanik", "Browse"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Settings), _translate("Citramanik", "Settings"))
         self.label_title.setText(_translate("Citramanik", "Citramanik"))
         self.label_slug.setText(_translate("Citramanik", "More export, Less Effort!"))
         self.CitramanikDescription.setHtml(_translate("Citramanik", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Inter\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Citramanik is the next generation of Inkporter developed by Devlovers ID. This tool can export objects based on the ID pattern that you have previously set in Inkscape.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Citramanik supports SVG, PNG, JPG, PDF, EPS, and WEBP export formats. You can also activate CMYK color format support for JPG and PDF export formats. Apart from that, you can also export multiple PDF pages at one time by selecting the booklet export format.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">We also added an export archive feature to help those of you who work on microstock or other design marketplaces.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
+"</style></head><body style=\" font-family:\'Inter\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'DejaVu Sans\';\">Citramanik is the next generation of Inkporter developed by Devlovers ID. This tool can export objects based on the ID pattern that you have previously set in Inkscape.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'DejaVu Sans\';\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'DejaVu Sans\';\">Citramanik supports SVG, PNG, JPG, PDF, EPS, and WEBP export formats. You can also activate CMYK color format support for JPG and PDF export formats. Apart from that, you can also export multiple PDF pages at one time by selecting the booklet export format.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'DejaVu Sans\';\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'DejaVu Sans\';\">We also added an export archive feature to help those of you who work on microstock or other design marketplaces.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'DejaVu Sans\';\"><br /></p>\n"
 f"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Citramanik Version: {self.versions['citramanik']}</span></p>\n"
 f"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Release Date: {self.versions['release_date']}</span></p>\n"
 f"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Qt Version: {self.versions['qt_version']}</span></p>\n"
@@ -693,7 +759,7 @@ f"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0
 f"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Details:<br /></span><a href=\"{__website_url__}\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#353535;\">{__website_url__}</span></a></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
 f"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Donation:<br /></span><a href=\"{__donate_url__}\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#353535;\">{__donate_url__}</span></a></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:600; text-decoration: underline; color:#353535;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">About Qt:<br /></span><a href=\"https://www.qt.io\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#353535;\">https://www.qt.io</span></a></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:600; text-decoration: underline; color:#353535;\"><br /></p></body></html>"))
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'DejaVu Sans\'; font-weight:600; text-decoration: underline; color:#353535;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'DejaVu Sans\';\">About Qt:<br /></span><a href=\"https://www.qt.io\"><span style=\" font-family:\'DejaVu Sans\'; font-weight:600; text-decoration: underline; color:#353535;\">https://www.qt.io</span></a></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'DejaVu Sans\'; font-weight:600; text-decoration: underline; color:#353535;\"><br /></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.About), _translate("Citramanik", "About"))

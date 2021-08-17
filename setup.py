@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import shutil
 import sys
@@ -102,7 +104,7 @@ install_requires = [
     "lxml==4.6.3",
     "Pillow==8.1.2",
     "Pillow-PIL==0.1.dev0",
-    "PyQt5<5.13",
+    "PyQt5<5.16",
 ]
 
 setup_args['install_requires'] = install_requires

@@ -4,6 +4,10 @@ import sys
 
 block_cipher = None
 
+citramanik_runtime_hooks = [
+	'pyinstaller/fontconfig_hook.py',
+	'pyinstaller/qtplatform_hook.py'
+]
 
 a = Analysis(['citramanik/main.py'],
              pathex=['.'],
@@ -11,7 +15,7 @@ a = Analysis(['citramanik/main.py'],
              datas=[],
              hiddenimports=[],
              hookspath=[],
-             runtime_hooks=['pyinstaller/fontconfig_hook.py'],
+             runtime_hooks=citramanik_runtime_hooks,
              excludes=[],
              win_no_prefer_redirects=False,
              win_private_assemblies=False,
