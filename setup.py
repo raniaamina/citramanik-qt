@@ -103,7 +103,6 @@ install_requires = [
     "appdirs==1.4.4",
     "lxml==4.6.3",
     "Pillow==8.1.2",
-    "Pillow-PIL==0.1.dev0",
     "PyQt5<5.16",
 ]
 
