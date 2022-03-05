@@ -27,10 +27,28 @@ icon-support
 ### Longterm Support
 We provide live support for Citramanik users. This is intended to provide convenience to users when they encounter problems in using Citramanik, including update information, bug reporting, and others.
 
-## Support Us
-Citramanik can be downloaded for free. But before that, the developers tried to collect donations in advance for this project. We will immediately release Citramanik once the total donations collected have reached IDR 5.5 million. This donation will go to the developers and some will be set aside to be donated again to the Gimpscape community.
+
+## Download & Install Citramanik
+
+You can download Citramanik via the download page: https://getcitramanik.dev-is.my.id/
+The installer for the version of each OS will be uploaded periodically, please always check to make sure.
+
+Good news for Debian/Ubuntu base user, now you can install Citramanik via Gimpscape repository. Follow instruction to use this PPA via this link: https://gimpscape.github.io/gimpscape-ppa/
+
+For Arch based user, you can get latest Citramanik from AUR.
+
+
+## Found A Bug?
+
+Stability is a myth. So, if you find a bug or get a crash while using Citramanik, please report it via Github Issue: https://github.com/devlovers-id/citramanik-qt/issues
+We'll check it as soon as we can and provide regular updates.
+
+## Feel Helpful with this Project?
+
+We're happy to save you time and help get your task done efficiently. If you feel the same, besides donating, you can help the developer by making tutorials, reviews, or the like for other people to know about this project. It will make you, the Devlovers!
 
 [Donate Now](https://s.id/citramanik)
+
 
 **Usefull link**
 - [Citramanik Main Page](https://citramanik.dev.is.my.id)

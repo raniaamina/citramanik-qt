@@ -1,0 +1,4 @@
+build/
+citramanik/__pycache__/
+dist/
+pyinstaller/__pycache__/

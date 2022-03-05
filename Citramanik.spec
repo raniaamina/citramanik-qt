@@ -31,7 +31,7 @@ if sys.platform == "darwin":
             a.zipfiles,
             a.datas,
             [],
-            name='Citramanik',
+            name='citramanik-qt',
             debug=False,
             bootloader_ignore_signals=False,
             strip=False,
@@ -41,12 +41,14 @@ if sys.platform == "darwin":
             console=True , icon='icons/Icon.icns')
     app = BUNDLE(
         exe,
-        name='Citramanik-qt.app',
+        name='citramanik-qt.app',
         author='Devlovers ID',
-        version='1.0.1',
+        version='1.3.1',
         bundle_identifier='id.devlovers.citramanik-qt',
         info_plist={
+	    'NSPrincipalClass': 'NSApplication',
             'LSBackgroundOnly': False,
+	    'NSAppleScriptEnabled': False,
             'NSHighResolutionCapable': True
         },
         icon='icons/Icon.icns'
